@@ -54,6 +54,26 @@ ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
     return maximumSum;
 };
 
+ArrayProcessingTool.Search = function Search(array) {
+    let arr = numbers.split(",");
+    let max = arr[0];
+    let min = arr[0];
+
+    for (let num of arr) {
+        if (Number(num) < min)
+            min = num
+        if (Number(num) > max)
+            max = num;
+
+
+    }
+
+    return max + " " +
+        min;
+}
+ArrayProcessingTool.Selection = function Selection(array) {
+
+}
 
 
 
@@ -61,13 +81,12 @@ ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
 window.onload = function() {
     let inputButton = document.querySelector('.subtask__button');
     let input = document.querySelector('.subtask__input');
-
+    // присвоить переменной checkbox
 
 
 
 
     inputButton.onclick = function() {
-        let arr = [];
         let separator = ",";
         let arrayFromString = input.value.split(separator);
         console.log(arrayFromString);
