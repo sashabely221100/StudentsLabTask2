@@ -12,16 +12,6 @@
     box-sizing: border-box;
 }
 
- :focus,
- :active {
-    outline: none;
-}
-
-a:focus,
-a:active {
-    outline: none;
-}
-
 nav,
 footer,
 header,
@@ -93,6 +83,7 @@ h6 {
 
 .page {
     font-family: sans-serif;
+    outline-color: RED;
 }
 
 .page__body {
@@ -160,7 +151,7 @@ h6 {
     width: 100%;
     height: 50%;
     padding: 30px;
-    row-gap: 40px;
+    row-gap: 18px;
     background-color: #2D728f;
     border-bottom: 5px solid #2D728f;
     border-radius: 20px;
@@ -168,8 +159,17 @@ h6 {
 }
 
 .task__name {
-    font-size: 34px;
+    font-size: 3em;
     text-transform: uppercase;
+}
+
+.task__name-last::before {
+    content: "*";
+    color: red;
+}
+
+.subtask__name {
+    font-size: 1.75em;
 }
 
 .subtask__button {
@@ -179,4 +179,17 @@ h6 {
     background-color: #FFC9B5;
     color: black;
     font-weight: 600;
+}
+
+.subtask__input {
+    width: 40%;
+    height: 5vh;
+    border-radius: 15px;
+    font-size: 1.4em;
+    padding: 0 2em;
+    text-align: center;
+}
+
+.subtask__description {
+    font-size: 1.5em;
 }

@@ -23,37 +23,77 @@
 // максимальной длины в исходном массиве.
 // Например: 1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1
 // Все функции обернуть в один объект для обработки массивов.
-
 ArrayProcessingTool = new Object();
 
-ArrayProcessingTool.getMaxSubSum = function getMaxSubSum(array) {
+//! O(n)
+ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
 
+    let maximumSum = 0;
+    let tempSum = 0;
 
-  let maximumSum = 0;
-  let tempSum = 0;
-
-  for (let curNuumber of array) {
-    tempSum += curNuumber;
-    maximumSum = Math.max(maximumSum, tempSum); 
-    if (tempSum < 0) tempSum = 0;
-  }
-
-  return maximumSum;
-
-  //! o(n^2)
-    // let maximumSum = 0
-    // for (let index = 0; index < array.length; index++) {
-    //     let startSum = 0;
-    //     for (let j = index; j < array.length; j++) {
-    //         startSum += array[j];
-    //         maximumSum = Math.max(maximumSum, startSum);
-    //     }
-    // }
-    // return maximumSum;
+    for (let curNumber of array) {
+        tempSum += curNumber;
+        maximumSum = Math.max(maximumSum, tempSum);
+        if (tempSum < 0) tempSum = 0;
+    }
+    return maximumSum;
 };
-    
-console.log( ArrayProcessingTool.getMaxSubSum([-1, 2, 3, -9]) ); // 5
-console.log( ArrayProcessingTool.getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
-console.log( ArrayProcessingTool.getMaxSubSum([-2, -1, 1, 2]) ); // 3
-console.log( ArrayProcessingTool.getMaxSubSum([1, 2, 3]) ); // 6
-console.log( ArrayProcessingTool.getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+
+//! o(n^2)
+ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
+
+    let maximumSum = 0;
+
+    for (let index = 0; index < array.length; index++) {
+        let startSum = 0;
+        for (let j = index; j < array.length; j++) {
+            startSum += array[j];
+            maximumSum = Math.max(maximumSum, startSum);
+        }
+    }
+    return maximumSum;
+};
+
+
+
+
+
+window.onload = function() {
+    let inputButton = document.querySelector('.subtask__button');
+    let input = document.querySelector('.subtask__input');
+
+
+
+
+
+    inputButton.onclick = function() {
+        let arr = [];
+        let separator = ",";
+        let arrayFromString = input.value.split(separator);
+        console.log(arrayFromString);
+        for (let index = 0; index < arrayFromString.length; index++) {
+            arr.push(Number.parseInt(arrayFromString[index]));
+        }
+        console.log(arr);
+
+        input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
+    };
+
+
+
+
+    // console.log(ArrayProcessingTool.getMaxSubSumOn([-1, 2, 3, -9])); // 5
+    // console.log(ArrayProcessingTool.getMaxSubSumOn([-1, 2, 3, -9, 11])); // 11
+    // console.log(ArrayProcessingTool.getMaxSubSumOn([-2, -1, 1, 2])); // 3
+    // console.log(ArrayProcessingTool.getMaxSubSumOn([1, 2, 3])); // 6
+    // console.log(ArrayProcessingTool.getMaxSubSumOn([100, -9, 2, -3, 5])); // 100
+
+    // console.log("");
+    // console.log("");
+
+    // console.log(ArrayProcessingTool.getMaxSubSumOn2([-1, 2, 3, -9])); // 5
+    // console.log(ArrayProcessingTool.getMaxSubSumOn2([-1, 2, 3, -9, 11])); // 11
+    // console.log(ArrayProcessingTool.getMaxSubSumOn2([-2, -1, 1, 2])); // 3
+    // console.log(ArrayProcessingTool.getMaxSubSumOn2([1, 2, 3])); // 6
+    // console.log(ArrayProcessingTool.getMaxSubSumOn2([100, -9, 2, -3, 5])); // 100
+}
