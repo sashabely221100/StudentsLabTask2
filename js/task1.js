@@ -58,54 +58,55 @@ ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
 
 
 
-window.onload = function() {
-        let inputButton = document.querySelector('.subtask__button');
-        let input = document.querySelector('.subtask__input');
-        // присвоить переменной checkbox
+window.onload = function () {
+    let inputButton = document.querySelector('.subtask__button');
+    let input = document.querySelector('.subtask__input');
+    // присвоить переменной checkbox
 
 
 
 
-        inputButton.onclick = function() {
-            // let separator = ",";
-            let arrayFromString = input.value.split(separator);
-            console.log(arrayFromString);
-            for (let index = 0; index < arrayFromString.length; index++) {
-                arr.push(Number.parseInt(arrayFromString[index]));
-            }
-            console.log(arr);
-
-            input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
-        };
-
-
-
-        ArrayProcessingTool.Search = function Search(inputString) {
-            //!переписать под кнопочки radiobutton (+.value)
-            //!повесить eventListener на кнопку чтоб слушала состояние radiobutton  
-            let arr = inputString.split(",");
-            let max = arr[0];
-            let min = arr[0];
-
-            for (let num of arr) {
-                if (Number(num) < min)
-                    min = num
-                if (Number(num) > max)
-                    max = num;
-
-
-            }
-
-            return max + " " + min;
+    inputButton.onclick = function () {
+        // let separator = ",";
+        let arr = [];
+        let arrayFromString = input.value.split(",");
+        console.log(arrayFromString);
+        for (let index = 0; index < arrayFromString.length; index++) {
+            arr.push(Number.parseInt(arrayFromString[index]));
         }
-        ArrayProcessingTool.Selection = function Selection(array) {};
+        console.log(arr);
+
+        input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
+    };
 
 
 
+    ArrayProcessingTool.Search = function Search(inputString) {
+        //!переписать под кнопочки radiobutton (+.value)
+        //!повесить eventListener на кнопку чтоб слушала состояние radiobutton  
+        let arr = inputString.split(",");
+        let max = arr[0];
+        let min = arr[0];
 
-        console.log(ArrayProcessingTool.Search("-1, 2, 3, -9, 11"));
+        for (let num of arr) {
+            if (Number(num) < min)
+                min = num
+            if (Number(num) > max)
+                max = num;
 
+
+        }
+
+        return max + " " + min;
     }
+    ArrayProcessingTool.Selection = function Selection(array) { };
+
+
+
+
+    console.log(ArrayProcessingTool.Search("-1, 2, 3, -9, 11"));
+
+}
     //min + max
     // console.log(ArrayProcessingTool.getMaxSubSumOn([-1, 2, 3, -9, 11])); // 11
     // console.log(ArrayProcessingTool.getMaxSubSumOn([-2, -1, 1, 2])); // 3
