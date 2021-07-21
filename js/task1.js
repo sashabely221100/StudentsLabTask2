@@ -130,7 +130,7 @@ ArrayProcessingTool.Search = function Search(array) {
 
     }
     let average = total / array.length;
-    let result = "max:" + max + " min:" + min + " average:" + average;
+    let result = "max:" + max + " min:" + min + " average:" + average.toFixed(2); //math round 2 avoid big decimals
     return result.toString();
 }
 
@@ -139,4 +139,30 @@ ArrayProcessingTool.Search = function Search(array) {
 //! 3subtask
 ArrayProcessingTool.Selection = function Selection(array) {
 
+
+    let currentSum = 0;
+    let maxSum = 0;
+    let resArray = []; //?
+
+
+    for (let i = 0; i < array.length; i++) {
+        if (maxSum < array[i] + currentSum) {
+            currentSum += array[i];
+            maxSum = currentSum;
+            resArray.push(array[i]); //?
+        } else if (maxSum < array[i]) {
+            maxSum = array[i];
+            resArray = [] //?
+            resArray.push(array[i]); //?
+        } else {
+
+            currentSum = currentSum + array[i] > 0 ? currentSum + array[i] : 0;
+            if (maxSum < currentSum) {
+                resArray.push(array[i]); //?
+                maxSum = currentSum;
+            }
+        }
+
+    }
+    return maxSum + "arr: " + resArray.toString();
 };
