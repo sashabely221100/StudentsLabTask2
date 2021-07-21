@@ -30,11 +30,18 @@
                 <h3 class="subtask__name">SubSum</h3>
                 <p class="subtask__description">На входе массив чисел, например: <code>arr = [1, -2, 3, 4, -9, 6].</code> <br> Задача — найти непрерывный подмассив arr, сумма элементов которого максимальна. Функция должна возвращать только эту сумму.
                 </p>
-                <span>Выберите как обработать массив</span>
-                <input type="text" class="subtask__input" placeholder="введите строку вида 1,2,-3,-4,5 ">
-                <button class="subtask__button">
-            click me        
-            </button>
+                <form class="subtask__form">
+                    <span class="subtask__form-desc">Выберите как обработать массив</span>
+                    <div class="subtask__checkbox-holder">
+
+
+                        <div> <input class="subtask__checkbox" name="r" type="radio" id="check1"> <label for="check1">SubSum</label></div>
+                        <div> <input class="subtask__checkbox" name="r" type="radio" id="check2"> <label for="check2">Search</label></div>
+                        <div> <input class="subtask__checkbox" name="r" type="radio" id="check3"> <label for="check3">Selection</label></div>
+                    </div>
+                    <input type="text" class="subtask__input" placeholder="введите строку вида 1,2,-3,-4,5 ">
+                    <button class="subtask__button"> click me</button>
+                </form>
             </div>
             <div class="subtask main__subtask" id="task2">
                 <h2 class="task__name">Date Display Formatter</h2>

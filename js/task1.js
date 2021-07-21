@@ -25,7 +25,61 @@
 // Все функции обернуть в один объект для обработки массивов.
 ArrayProcessingTool = new Object();
 
-//! O(n)
+
+
+
+
+let inputButton = document.querySelector('.subtask__button');
+let input = document.querySelector('.subtask__input');
+
+
+
+
+inputButton.onclick = function() {
+
+
+    let arr = [];
+    let arrayFromString = input.value.split(",");
+    console.log(arrayFromString);
+    for (let index = 0; index < arrayFromString.length; index++) {
+        arr.push(Number.parseInt(arrayFromString[index]));
+    }
+    console.log(arr);
+
+
+    let subSum = document.getElementById('check1');
+    let search = document.getElementById('check2');
+    let selection = document.getElementById('check3');
+
+
+
+    if (subSum.checked) {
+        input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
+    } else if (search.checked) {
+        input.value = ArrayProcessingTool.Search(arr);
+    } else if (selection.checked) {
+        input.value = ArrayProcessingTool.Selection(arr);
+    }
+
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! 1subtask O(n)
 ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
 
     let maximumSum = 0;
@@ -39,7 +93,7 @@ ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
     return maximumSum;
 };
 
-//! o(n^2)
+//! 1subtask o(n^2)
 ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
 
     let maximumSum = 0;
@@ -58,66 +112,31 @@ ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
 
 
 
-window.onload = function () {
-    let inputButton = document.querySelector('.subtask__button');
-    let input = document.querySelector('.subtask__input');
-    // присвоить переменной checkbox
+//! 2subtask
+ArrayProcessingTool.Search = function Search(array) {
 
 
+    let max = array[0];
+    let min = array[0];
+    let total = 0
+
+    for (let num of array) {
+        total += num;
+        if (Number(num) < min)
+            min = num
+        if (Number(num) > max)
+            max = num;
 
 
-    inputButton.onclick = function () {
-        // let separator = ",";
-        let arr = [];
-        let arrayFromString = input.value.split(",");
-        console.log(arrayFromString);
-        for (let index = 0; index < arrayFromString.length; index++) {
-            arr.push(Number.parseInt(arrayFromString[index]));
-        }
-        console.log(arr);
-
-        input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
-    };
-
-
-
-    ArrayProcessingTool.Search = function Search(inputString) {
-        //!переписать под кнопочки radiobutton (+.value)
-        //!повесить eventListener на кнопку чтоб слушала состояние radiobutton  
-        let arr = inputString.split(",");
-        let max = arr[0];
-        let min = arr[0];
-
-        for (let num of arr) {
-            if (Number(num) < min)
-                min = num
-            if (Number(num) > max)
-                max = num;
-
-
-        }
-
-        return max + " " + min;
     }
-    ArrayProcessingTool.Selection = function Selection(array) { };
-
-
-
-
-    console.log(ArrayProcessingTool.Search("-1, 2, 3, -9, 11"));
-
+    let average = total / array.length;
+    let result = "max:" + max + " min:" + min + " average:" + average;
+    return result.toString();
 }
-    //min + max
-    // console.log(ArrayProcessingTool.getMaxSubSumOn([-1, 2, 3, -9, 11])); // 11
-    // console.log(ArrayProcessingTool.getMaxSubSumOn([-2, -1, 1, 2])); // 3
-    // console.log(ArrayProcessingTool.getMaxSubSumOn([1, 2, 3])); // 6
-    // console.log(ArrayProcessingTool.getMaxSubSumOn([100, -9, 2, -3, 5])); // 100
 
-// console.log("");
-// console.log("");
 
-// console.log(ArrayProcessingTool.getMaxSubSumOn2([-1, 2, 3, -9])); // 5
-// console.log(ArrayProcessingTool.getMaxSubSumOn2([-1, 2, 3, -9, 11])); // 11
-// console.log(ArrayProcessingTool.getMaxSubSumOn2([-2, -1, 1, 2])); // 3
-// console.log(ArrayProcessingTool.getMaxSubSumOn2([1, 2, 3])); // 6
-// console.log(ArrayProcessingTool.getMaxSubSumOn2([100, -9, 2, -3, 5])); // 100
+
+//! 3subtask
+ArrayProcessingTool.Selection = function Selection(array) {
+
+};

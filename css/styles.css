@@ -163,9 +163,23 @@ h6 {
     text-transform: uppercase;
 }
 
-.task__name-last::before {
-    content: "*";
-    color: red;
+.subtask__form {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    width: 100%;
+    row-gap: 10px;
+}
+
+.subtask__checkbox-holder {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.subtask__form-desc {
+    color: #FFC9B5;
+    font-weight: 700;
 }
 
 .subtask__name {
@@ -179,6 +193,7 @@ h6 {
     background-color: #FFC9B5;
     color: black;
     font-weight: 600;
+    width: 20%;
 }
 
 .subtask__input {
@@ -192,4 +207,9 @@ h6 {
 
 .subtask__description {
     font-size: 1.5em;
+}
+
+.task__name-last::before {
+    content: "*";
+    color: red;
 }
