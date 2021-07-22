@@ -33,18 +33,28 @@ let inputButton = document.querySelector('.subtask__button');
 let input = document.querySelector('.subtask__input');
 
 
+function stringToArray(arr) {
+    let arrayFromString = arr.split(",");
+    // console.log(arrayFromString);
+    for (let index = 0; index < arrayFromString.length; index++) {
+        arr.push(Number.parseInt(arrayFromString[index]));
+    }
+}
+
 
 
 inputButton.onclick = function() {
 
 
     let arr = [];
-    let arrayFromString = input.value.split(",");
-    console.log(arrayFromString);
-    for (let index = 0; index < arrayFromString.length; index++) {
-        arr.push(Number.parseInt(arrayFromString[index]));
+
+    if (typeof input.value === "string") {
+
+        stringToArray(input.value);
     }
-    console.log(arr);
+
+
+    // console.log(arr);
 
 
     let subSum = document.getElementById('check1');
@@ -52,7 +62,7 @@ inputButton.onclick = function() {
     let selection = document.getElementById('check3');
 
 
-
+    debugger;
     if (subSum.checked) {
         input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
     } else if (search.checked) {
@@ -139,30 +149,42 @@ ArrayProcessingTool.Search = function Search(array) {
 //! 3subtask
 ArrayProcessingTool.Selection = function Selection(array) {
 
+    var max_so_far = Number.NEGATIVE_INFINITY;
+    var leftIndex = 0,
+        rightIndex = array.length - 1,
+        len = array.length;
 
-    let currentSum = 0;
-    let maxSum = 0;
-    let resArray = []; //?
+    for (var i = 0; i < len; i++) {
+
+        for (var j = i; j < len; j++) {
+            maxSum = 0;
+            for (var k = i; k <= j; k++) {
+                if (array[k] < array[k + 1]) {
+                    leftIndex = i;
+                    max_so_far = maxSum;
+                    rightIndex = j;
+                    maxSum += array[k];
 
 
-    for (let i = 0; i < array.length; i++) {
-        if (maxSum < array[i] + currentSum) {
-            currentSum += array[i];
-            maxSum = currentSum;
-            resArray.push(array[i]); //?
-        } else if (maxSum < array[i]) {
-            maxSum = array[i];
-            resArray = [] //?
-            resArray.push(array[i]); //?
-        } else {
+                } else { i = j + 1; }
 
-            currentSum = currentSum + array[i] > 0 ? currentSum + array[i] : 0;
-            if (maxSum < currentSum) {
-                resArray.push(array[i]); //?
-                maxSum = currentSum;
             }
         }
+    }
+
+    let result = [];
+    for (let x = leftIndex; x <= rightIndex; x++) {
+        result.push(array[x]);
 
     }
-    return maxSum + "arr: " + resArray.toString();
+
+    return "massiv max podposledv-ti: " + result.toString();
+
+
+
+
 };
+
+// var array = [1, 2, 3, -1, 4, 5, 6];
+
+// console.log(findMaxSubArrayBruteForce(array));

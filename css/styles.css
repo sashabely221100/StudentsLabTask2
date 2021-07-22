@@ -43,7 +43,7 @@ input::-ms-clear {
 }
 
 button {
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 button::-moz-focus-inner {
@@ -121,6 +121,7 @@ h6 {
     border-radius: 3px;
     flex-direction: row;
     justify-content: center;
+    cursor: pointer;
 }
 
 .nav__item-link {
