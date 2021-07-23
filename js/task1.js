@@ -25,72 +25,40 @@
 // Все функции обернуть в один объект для обработки массивов.
 ArrayProcessingTool = new Object();
 
+let subSum;
+let search;
+let selection;
+let inputButton;
+let input;
 
-
-
-
-let inputButton = document.querySelector('.subtask__button');
-let input = document.querySelector('.subtask__input');
-
-
-function stringToArray(arr) {
-    let arrayFromString = arr.split(",");
-    // console.log(arrayFromString);
-    for (let index = 0; index < arrayFromString.length; index++) {
-        arr.push(Number.parseInt(arrayFromString[index]));
-    }
+window.onload = function() {
+    subSum = document.getElementById('check1');
+    search = document.getElementById('check2');
+    selection = document.getElementById('check3');
+    inputButton = document.querySelector(".subtask__button");
+    input = document.querySelector(".subtask__input");
+    inputButton.addEventListener("click", click);
 }
 
+function stringToArray(arr) {
+    let res = [];
+    res = arr.split(",").map(x => +x);
+    return res;
+}
 
-
-inputButton.onclick = function() {
-
-
-    let arr = [];
-
-    if (typeof input.value === "string") {
-
-        stringToArray(input.value);
-    }
-
-
-    // console.log(arr);
-
-
-    let subSum = document.getElementById('check1');
-    let search = document.getElementById('check2');
-    let selection = document.getElementById('check3');
-
-
-    debugger;
+function click() {
+    let inputValue = stringToArray(input.value);
     if (subSum.checked) {
-        input.value = ArrayProcessingTool.getMaxSubSumOn(arr);
+        input.value = getMaxSubSumOn(inputValue);
     } else if (search.checked) {
-        input.value = ArrayProcessingTool.Search(arr);
+        input.value = Search(inputValue);
     } else if (selection.checked) {
-        input.value = ArrayProcessingTool.Selection(arr);
+        input.value = subSumSelection(inputValue);
     }
-
-
-
-
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //! 1subtask O(n)
-ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
+function getMaxSubSumOn(array) {
 
     let maximumSum = 0;
     let tempSum = 0;
@@ -100,11 +68,12 @@ ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
         maximumSum = Math.max(maximumSum, tempSum);
         if (tempSum < 0) tempSum = 0;
     }
+
     return maximumSum;
 };
 
 //! 1subtask o(n^2)
-ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
+function getMaxSubSumOn2(array) {
 
     let maximumSum = 0;
 
@@ -118,14 +87,8 @@ ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
     return maximumSum;
 };
 
-
-
-
-
 //! 2subtask
-ArrayProcessingTool.Search = function Search(array) {
-
-
+function Search(array) {
     let max = array[0];
     let min = array[0];
     let total = 0
@@ -136,9 +99,8 @@ ArrayProcessingTool.Search = function Search(array) {
             min = num
         if (Number(num) > max)
             max = num;
-
-
     }
+
     let average = total / array.length;
     let result = "max:" + max + " min:" + min + " average:" + average.toFixed(2); //math round 2 avoid big decimals
     return result.toString();
@@ -147,8 +109,7 @@ ArrayProcessingTool.Search = function Search(array) {
 
 
 //! 3subtask
-ArrayProcessingTool.Selection = function Selection(array) {
-
+function subSumSelection(array) {
     var max_so_far = Number.NEGATIVE_INFINITY;
     var leftIndex = 0,
         rightIndex = array.length - 1,
@@ -167,7 +128,6 @@ ArrayProcessingTool.Selection = function Selection(array) {
 
 
                 } else { i = j + 1; }
-
             }
         }
     }
@@ -179,12 +139,4 @@ ArrayProcessingTool.Selection = function Selection(array) {
     }
 
     return "massiv max podposledv-ti: " + result.toString();
-
-
-
-
 };
-
-// var array = [1, 2, 3, -1, 4, 5, 6];
-
-// console.log(findMaxSubArrayBruteForce(array));
