@@ -23,7 +23,8 @@
 // максимальной длины в исходном массиве.
 // Например: 1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1
 // Все функции обернуть в один объект для обработки массивов.
-ArrayProcessingTool = new Object();
+let ArrayProcessingTool = new Object();
+
 
 let subSum;
 let search;
@@ -49,16 +50,16 @@ function stringToArray(arr) {
 function click() {
     let inputValue = stringToArray(input.value);
     if (subSum.checked) {
-        input.value = getMaxSubSumOn(inputValue);
+        input.value = ArrayProcessingTool.getMaxSubSumOn(inputValue);
     } else if (search.checked) {
-        input.value = Search(inputValue);
+        input.value = ArrayProcessingTool.Search(inputValue);
     } else if (selection.checked) {
-        input.value = subSumSelection(inputValue);
+        input.value = ArrayProcessingTool.subSumSelection(inputValue);
     }
 };
 
 //! 1subtask O(n)
-function getMaxSubSumOn(array) {
+ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
 
     let maximumSum = 0;
     let tempSum = 0;
@@ -73,7 +74,7 @@ function getMaxSubSumOn(array) {
 };
 
 //! 1subtask o(n^2)
-function getMaxSubSumOn2(array) {
+ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
 
     let maximumSum = 0;
 
@@ -88,7 +89,7 @@ function getMaxSubSumOn2(array) {
 };
 
 //! 2subtask
-function Search(array) {
+ArrayProcessingTool.Search = function Search(array) {
     let max = array[0];
     let min = array[0];
     let total = 0
@@ -102,14 +103,14 @@ function Search(array) {
     }
 
     let average = total / array.length;
-    let result = "max:" + max + " min:" + min + " average:" + average.toFixed(2); //math round 2 avoid big decimals
+    let result = "max:" + max + " min:" + min + " average:" + average.toFixed(2); //rounds decimal numbers to 2 digits after comma
     return result.toString();
 }
 
 
 
 //! 3subtask
-function subSumSelection(array) {
+ArrayProcessingTool.subSumSelection = function subSumSelection(array) {
     var max_so_far = Number.NEGATIVE_INFINITY;
     var leftIndex = 0,
         rightIndex = array.length - 1,
