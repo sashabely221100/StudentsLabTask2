@@ -139,5 +139,5 @@ ArrayProcessingTool.subSumSelection = function subSumSelection(array) {
 
     }
 
-    return "massiv max podposledv-ti: " + result.toString();
+    return "возраст-я послед-ть макс. длины: " + result.toString();
 };
