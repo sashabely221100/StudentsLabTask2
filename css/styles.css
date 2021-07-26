@@ -206,6 +206,15 @@ h6 {
     text-align: center;
 }
 
+.subtask2__list:nth-of-type(n) {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.date-input {
+    width: 66%;
+}
+
 .subtask__description {
     font-size: 1.5em;
 }
