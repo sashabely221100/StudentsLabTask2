@@ -1,45 +1,38 @@
-//  task description
 
-// . Array Processing Tool
-// a. Sub Sum
-// На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].
-// Задача — найти непрерывный подмассив arr, сумма элементов которого 
-// максимальна. Функция должна возвращать только эту сумму.
-// Например:
-// 1. getMaxSubSum([-1, 2, 3, -9]) = 5
-// 2. getMaxSubSum([2, -1, 2, 3, -9]) = 6
-// 3. getMaxSubSum([-1, 2, 3, -9, 11]) = 11 
-// 4. getMaxSubSum([-2, -1, 1, 2]) = 3
-// 5. getMaxSubSum([100, -9, 2, -3, 5]) = 100
-// 6. getMaxSubSum([1, 2, 3]) = 6
-// 7. getMaxSubSum([-1, -2, -3]) = 0
-// Написать два решения, сложность O(n2
-// ) и O(n).
-// b. Search
-// Написать функционал поиска минимального, максимального, медианного 
-// значения в массиве.
-// c. Selection Task
-// Написать функционал поиска возрастающей последовательности 
-// максимальной длины в исходном массиве.
-// Например: 1, 3, 7, 4, 6, 7, 8, 1, 2, 5, 7, 8, 90, 1
-// Все функции обернуть в один объект для обработки массивов.
+
 let ArrayProcessingTool = new Object();
-
-
 let subSum;
 let search;
 let selection;
-let inputButton;
 let input;
+let inputButton;
+window.onload = function () {
 
-window.onload = function() {
+    function btnClick() {
+        input.value = stringToArray(input.value);
+        if (subSum.checked) {
+            input.value = ArrayProcessingTool.getMaxSubSumOn(input.value);
+        } else if (search.checked) {
+            input.value = ArrayProcessingTool.Search(input.value);
+        } else if (selection.checked) {
+            input.value = ArrayProcessingTool.subSumSelection(input.value);
+        }
+
+        console.log(input);
+        console.log(inputButton);
+    }
+
     subSum = document.getElementById('check1');
     search = document.getElementById('check2');
     selection = document.getElementById('check3');
-    inputButton = document.querySelector(".subtask__button");
     input = document.querySelector(".subtask__input");
-    inputButton.addEventListener("click", click);
-}
+    console.log(input);
+    inputButton = document.querySelector(".subtask1__button");
+    console.log(inputButton);
+
+
+    inputButton.addEventListener("click", btnClick);
+};
 
 function stringToArray(arr) {
     let res = [];
@@ -47,16 +40,7 @@ function stringToArray(arr) {
     return res;
 }
 
-function click() {
-    let inputValue = stringToArray(input.value);
-    if (subSum.checked) {
-        input.value = ArrayProcessingTool.getMaxSubSumOn(inputValue);
-    } else if (search.checked) {
-        input.value = ArrayProcessingTool.Search(inputValue);
-    } else if (selection.checked) {
-        input.value = ArrayProcessingTool.subSumSelection(inputValue);
-    }
-};
+
 
 //! 1subtask O(n)
 ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
