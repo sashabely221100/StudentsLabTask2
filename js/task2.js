@@ -3,6 +3,7 @@
 
 let DateDisplayFormatter = new Object();
 let monthCheck;
+let fromNow = false;
 let dateInput;
 let dateInputButton;
 
@@ -27,8 +28,8 @@ window.onload = function() {
         dateInput.value = DateDisplayFormatter.showCurrentDate(dateInput.value);
     }
     monthCheck = document.getElementById('monthCheck');
+    fromNow = document.querySelector("#fromNow");
     dateInput = document.querySelector(".date-input");
-
     dateInputButton = document.querySelector(".subtask2__button");
     dateInputButton.addEventListener("click", dateClick);
 
@@ -71,7 +72,8 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
             dateStrArr = dateStr.split(',');
             date = dateStrArr[0].trim();
             inputMaskString = dateStrArr[1].trim();
-            outputMaskString = dateStrArr[2].trim();
+            if (dateStrArr.length > 2)
+                outputMaskString = dateStrArr[2];
 
         }
 
@@ -159,8 +161,23 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
     validateDate(dateStr);
 
     monthCheck.checked ? month = String(months[Number(month) - 1]) : month;
-    outputMaskString = outputMaskString.replace(/[^\w]+/g, ''); //  \D  all non-digit characters between 1 and unlimited times
+    if (outputMaskString != "") {
+        outputMaskString = outputMaskString.replace(/[^\w]+/g, ''); //  \D  all non-digit characters between 1 and unlimited times
+
+    }
     let resultStr = "";
+
+
+    function getDatefromNow(str) {
+        let now = new Date();
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let date = new Date(Date.parse(year, month, day));
+        let diff = Math.floor((today - date) / 1000 / 3600 / 24 / 365) // floor в нижнюю сторону
+        diff.toString();
+        return str + " — полных лет прошло с этой даты: " + diff;
+    }
+
+
 
     if (isvalid && inputMaskString.length > 2 && outputMaskString.length > 2) {
 
@@ -169,7 +186,7 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
             outputMaskString.toLowerCase() == "yyyyddmm" ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
             outputMaskString.toLowerCase() == "yyyymmdd" ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` :
             "";
-        return resultStr;
+
 
     } else if (isvalid && inputMaskString.length > 2) {
 
@@ -177,17 +194,19 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
             mmddyyyyFlag == true ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
             yyyyddmmFlag == true ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
             yyyymmddFlag == true ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` : "";
-        return resultStr;
 
     } else if (separator != "") {
         resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;
 
-        return resultStr;
+
     } else {
         resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;
-        return resultStr;
-    }
 
+    }
+    if (fromNow.checked) {
+        return getDatefromNow(resultStr);
+
+    } else return resultStr;
 
 
 }

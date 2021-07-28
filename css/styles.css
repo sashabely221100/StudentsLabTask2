@@ -178,6 +178,11 @@ h6 {
     gap: 20px;
 }
 
+.subtask2__checkbox-holder {
+    display: flex;
+    gap: 35px;
+}
+
 .subtask__form-desc {
     color: #FFC9B5;
     font-weight: 700;
