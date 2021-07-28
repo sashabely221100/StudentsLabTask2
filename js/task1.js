@@ -1,12 +1,10 @@
-
-
 let ArrayProcessingTool = new Object();
 let subSum;
 let search;
 let selection;
 let input;
 let inputButton;
-window.onload = function () {
+window.onload = function() {
 
     function btnClick() {
         input.value = stringToArray(input.value);
