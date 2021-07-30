@@ -1,38 +1,55 @@
 let BinaryConverter = new Object();
+let converterInput;
+let inputVal;
+let converterButton;
+let inputArr;
 
-window.onload = function () {
-    let converterInput = document.getElementById("converterInput");
-    let inputValue = converterInput.value;
 
-    let inputArr = inputValue.split("");
+window.onload = function() {
+
+    converterInput = document.getElementById("converterInput");
+
+
+    converterButton = document.querySelector(".subtask3__button");
+
+    inputArr = converterInput.value.trim().split('');
 
     function converterInputClick() {
-        inputValue = BinaryConverter.Convert(dateInput.value);
+        inputVal = converterInput.value;
+        inputVal.replace(/\D/g, "");
+        inputArr = converterInput.value.trim().split('');
+        inputVal = BinaryConverter.Convert(inputArr);
     }
 
-    dateInputButton.addEventListener("click", converterInputClick(inputArr));
+
+
+    converterButton.addEventListener("click", converterInputClick);
 
 }
-
 
 BinaryConverter.Convert = function Convert(arr) {
 
 
-    //!TODO  
-    function binaryToDecimal(binaryarr) {
-        let len = binaryarr.length;
-        let pow = [];
-        let decimal = [];
-        for (let i = 0; i <= len - 1; i++) {
-            pow.unshift(i);
-        }
-        binaryarr.forEach((x, index) => {
-            decimal.push(x * 2 ** pow[index]);
-        })
-        let toDecimal = decimal.reduce((acc, curr) => acc + curr, 0);
-        return toDecimal.toString();
-    }
-    binaryToDecimal(binaryarr);
+    function convertInput(inpStr) {
+        inpStr.join('');
+        return parseInt(inpStr, 2); //chooseParam(inputArr)
 
+    }
+    convertInput(arr);
+
+    function convertOutput(outStr) {
+        return parseInt(outStr, 10);
+    }
+    convertOutput(arr);
+    return arr.toString();
+    //!TODO  
+    //     function chooseParam(array) {
+    //         забираем значение обоих селектов и от этого отталкиваемся
+    //     }
 
 }
+
+
+
+
+//BinaryConverter.Convert(inputArr);
