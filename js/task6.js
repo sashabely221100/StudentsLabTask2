@@ -1,9 +1,36 @@
-let converterInput = document.getElementById("converterInput");
+let BinaryConverter = new Object();
 
-alert(converterInput.value)
+window.onload = function () {
+    let converterInput = document.getElementById("converterInput");
+    let inputValue = converterInput.value;
+    let inputArr = inputValue.split("");
 
-console.log(+"в двоичной СИ" + converterInput.value.toString(2));
+    function converterInputClick() {
+        inputValue = BinaryConverter.Convert(dateInput.value);
+    }
 
-console.log(converterInput.value + "в 8-ричной СИ" + converterInput.value.toString(8));
+    dateInputButton.addEventListener("click", converterInputClick(inputArr));
 
-console.log(converterInput.value + "в 16-ричной СИ" + converterInput.value.toString(16));
+}
+
+
+BinaryConverter.Convert = function Convert(arr) {
+
+
+
+
+    let len = arr.length;
+    let pow = [];
+    let decimal = [];
+    for (let i = 0; i <= len - 1; i++) {
+        pow.unshift(i);
+    }
+    arr.forEach((x, index) => {
+        decimal.push(x * 2 ** pow[index]);
+    })
+    let toDecimal = decimal.reduce((acc, curr) => acc + curr, 0);
+    return toDecimal;
+
+
+
+}
