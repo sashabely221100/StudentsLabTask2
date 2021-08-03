@@ -3,24 +3,43 @@ let converterInput;
 let inputVal;
 let converterButton;
 let inputArr;
+let selectOutput = "";
+let selectInput = "bin";
+window.onload = function() {
+
+    converterButton = document.getElementById("subTask3__button"); // btn elem
+    converterInput = document.getElementById("converterInput"); //input elem
 
 
-window.onload = function () {
+    selectInput = document.querySelector(".selectInput"); // input-select element
+    selectInput.addEventListener('change', (e) => {
+        selectInput = e.target.value;
+        return selectInput;
+    });
 
-    converterButton = document.querySelector(".subtask3__button");
-    converterInput = document.getElementById("converterInput");
+
+    selectOutput = document.querySelector(".selectOutput"); // output-select element
+    selectOutput.addEventListener('change', (e) => {
+        selectOutput = e.target.value;
+        return selectOutput;
+    });
+
+
+    converterButton.addEventListener("click", converterInputClick);
+
+
 
 
     function converterInputClick() {
-        inputVal = converterInput.value;
-        inputVal.replace(/\D/g, "");
-        inputArr = converterInput.value.trim().split('');
-        inputVal = BinaryConverter.Convert(inputArr);
+        // inputVal = converterInput.value; //!inputVALUE
+        // inputVal.replace(/\D/g, "");
+        // inputArr = inputVal.trim().split('');
+        converterInput.value = BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
     }
 
 
 
-    converterButton.addEventListener("click", converterInputClick);
+
 
 }
 
@@ -76,15 +95,15 @@ BinaryConverter.Convert = function Convert(src, from, to) {
             "1110": "E",
             "1111": "F"
         };
-        let i;
+
         let srcString = src.toString();
-        let returnString = "";
+        let resultStr = "";
         let remainder = ""; //ostatok
 
 
-        for (i = srcString.length; i >= 4; i -= 4) {
+        for (var i = srcString.length; i >= 4; i -= 4) {
             if (i - 4 < srcString.length) {
-                returnString = mapping[srcString.substr(i - 4, 4)] + returnString;
+                resultStr += mapping[srcString.substr(i - 4, 4)];
             }
         }
 
@@ -93,19 +112,19 @@ BinaryConverter.Convert = function Convert(src, from, to) {
             remainder = srcString.substr(0, i);
 
             while (remainder.length < 4) {
-                remainder = "0" + remainder;
+                remainder += "0";
             }
 
-            returnString = mapping[remainder] + returnString;
+            resultStr = mapping[remainder] + resultStr;
         }
 
-        return returnString;
+        return resultStr;
 
     }
 
     function decToBin(src) {
         var n = 0;
-        var returnString = "";
+        var resultStr = "";
 
         while (2 ** (n) < src) {
             n++;
@@ -113,14 +132,14 @@ BinaryConverter.Convert = function Convert(src, from, to) {
 
         for (n; n >= 0; n--) {
             if (2 ** n <= src) {
-                returnString += "1";
+                resultStr += "1";
                 src = src % 2 ** n;
             } else {
-                returnString += returnString === "" ? "" : "0";
+                resultStr += resultStr === "" ? "" : "0";
             }
         }
 
-        return returnString;
+        return resultStr;
 
     }
 
@@ -146,7 +165,7 @@ BinaryConverter.Convert = function Convert(src, from, to) {
         };
 
         let k = 0;
-        var returnString = "";
+        var resultStr = "";
 
         while (16 ** (k + 1) < src) {
             k++;
@@ -154,14 +173,14 @@ BinaryConverter.Convert = function Convert(src, from, to) {
 
         for (k; k >= 0; k--) {
             if (16 ** k <= src) {
-                returnString += mapping[Math.floor(src / 16 ** k).toString()];
+                resultStr += mapping[Math.floor(src / 16 ** k).toString()];
                 src = src - Math.floor(src / 16 ** k) * (16 ** k);
             } else {
-                returnString += "0";
+                resultStr += "0";
             }
         }
 
-        return returnString;
+        return resultStr;
     }
 
     function hexToBin(src) {
@@ -186,13 +205,13 @@ BinaryConverter.Convert = function Convert(src, from, to) {
         };
 
         var srcString = src.toString();
-        var returnString = "";
+        var resultStr = "";
 
         for (let l = 0; l < srcString.length; l++) {
-            returnString += mapping[srcString[l]];
+            resultStr += mapping[srcString[l]];
         }
 
-        return returnString;
+        return resultStr;
 
     }
 
@@ -230,5 +249,5 @@ BinaryConverter.Convert = function Convert(src, from, to) {
     }
 
 
-    return ();
+
 }
