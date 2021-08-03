@@ -5,7 +5,7 @@ let converterButton;
 let inputArr;
 
 
-window.onload = function() {
+window.onload = function () {
 
     converterInput = document.getElementById("converterInput");
 
