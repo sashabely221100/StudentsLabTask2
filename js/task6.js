@@ -5,6 +5,10 @@ let converterButton;
 let inputArr;
 let selectOutput = "";
 let selectInput = "bin";
+
+
+
+
 window.onload = function() {
 
     converterButton = document.getElementById("subTask3__button"); // btn elem
@@ -27,21 +31,17 @@ window.onload = function() {
 
     converterButton.addEventListener("click", converterInputClick);
 
-
-
-
     function converterInputClick() {
         // inputVal = converterInput.value; //!inputVALUE
         // inputVal.replace(/\D/g, "");
         // inputArr = inputVal.trim().split('');
         converterInput.value = BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
     }
-
-
-
-
-
 }
+
+
+
+
 
 BinaryConverter.Convert = function Convert(src, from, to) {
 
@@ -63,16 +63,18 @@ BinaryConverter.Convert = function Convert(src, from, to) {
 
 
     function binToDec(src) {
-        let input = String(src);
-        let binary = String(src)
-            .filter(i => i === '1' || i === '0');
 
-        if (input.length !== binary.length) {
-            return 'invalid input'
+        var i;
+        var n = 0;
+        var srcString = src.toString();
+        var returnNum = 0;
+
+        for (i = srcString.length - 1; i >= 0; i--) {
+            returnNum += srcString[i] * 2 ** n;
+            n++;
         }
-        return binary.reduce((acc, curr, index, arr) => {
-            return acc + Number(curr) * Math.pow(2, arr.length - 1 - index);
-        }, 0);
+
+        return returnNum;
 
     }
 
