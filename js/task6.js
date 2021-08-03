@@ -5,7 +5,7 @@ let converterButton;
 let inputArr;
 
 
-window.onload = function() {
+window.onload = function () {
 
     converterButton = document.querySelector(".subtask3__button");
     converterInput = document.getElementById("converterInput");
