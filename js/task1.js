@@ -4,16 +4,16 @@ let search;
 let selection;
 let input;
 let inputButton;
-window.onload = function () {
+window.onload = function() {
 
     function btnClick() {
-        input.value = stringToArray(input.value);
+        //input.value = stringToArray(input.value);
         if (subSum.checked) {
-            input.value = ArrayProcessingTool.getMaxSubSumOn(input.value);
+            input.value = ArrayProcessingTool.getMaxSubSumOn(stringToArray(input.value));
         } else if (search.checked) {
-            input.value = ArrayProcessingTool.Search(input.value);
+            input.value = ArrayProcessingTool.Search(stringToArray(input.value));
         } else if (selection.checked) {
-            input.value = ArrayProcessingTool.subSumSelection(input.value);
+            input.value = ArrayProcessingTool.subSumSelection(stringToArray(input.value));
         }
 
         console.log(input);
