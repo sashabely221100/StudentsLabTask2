@@ -7,345 +7,9 @@
 
 
 
-
-let ArrayProcessingTool = new Object();
-let subSum;
-let search;
-let selection;
-let input;
-let inputButton;
-window.onload = function() {
-
-    function btnClick() {
-        //input.value = stringToArray(input.value);
-        if (subSum.checked) {
-            input.value = ArrayProcessingTool.getMaxSubSumOn(stringToArray(input.value));
-        } else if (search.checked) {
-            input.value = ArrayProcessingTool.Search(stringToArray(input.value));
-        } else if (selection.checked) {
-            input.value = ArrayProcessingTool.subSumSelection(stringToArray(input.value));
-        }
-
-        console.log(input);
-        console.log(inputButton);
-    }
-
-    subSum = document.getElementById('check1');
-    search = document.getElementById('check2');
-    selection = document.getElementById('check3');
-    input = document.querySelector(".subtask__input");
-    console.log(input);
-    inputButton = document.querySelector(".subtask1__button");
-    console.log(inputButton);
-
-
-    inputButton.addEventListener("click", btnClick);
-};
-
-function stringToArray(arr) {
-    let res = [];
-    res = arr.split(",").map(x => +x);
-    return res;
-}
-
-
-
-//! 1subtask O(n)
-ArrayProcessingTool.getMaxSubSumOn = function getMaxSubSumOn(array) {
-
-    let maximumSum = 0;
-    let tempSum = 0;
-
-    for (let curNumber of array) {
-        tempSum += curNumber;
-        maximumSum = Math.max(maximumSum, tempSum);
-        if (tempSum < 0) tempSum = 0;
-    }
-
-    return maximumSum;
-};
-
-//! 1subtask o(n^2)
-ArrayProcessingTool.getMaxSubSumOn2 = function getMaxSubSumOn2(array) {
-
-    let maximumSum = 0;
-
-    for (let index = 0; index < array.length; index++) {
-        let startSum = 0;
-        for (let j = index; j < array.length; j++) {
-            startSum += array[j];
-            maximumSum = Math.max(maximumSum, startSum);
-        }
-    }
-    return maximumSum;
-};
-
-//! 2subtask
-ArrayProcessingTool.Search = function Search(array) {
-    let max = array[0];
-    let min = array[0];
-    let total = 0
-
-    for (let num of array) {
-        total += num;
-        if (Number(num) < min)
-            min = num
-        if (Number(num) > max)
-            max = num;
-    }
-
-    let average = total / array.length;
-    let result = "max:" + max + " min:" + min + " average:" + average.toFixed(2); //rounds decimal numbers to 2 digits after comma
-    return result.toString();
-}
-
-
-
-//! 3subtask
-ArrayProcessingTool.subSumSelection = function subSumSelection(array) {
-    var max_so_far = Number.NEGATIVE_INFINITY;
-    var leftIndex = 0,
-        rightIndex = array.length - 1,
-        len = array.length;
-
-    for (var i = 0; i < len; i++) {
-
-        for (var j = i; j < len; j++) {
-            maxSum = 0;
-            for (var k = i; k <= j; k++) {
-                if (array[k] < array[k + 1]) {
-                    leftIndex = i;
-                    max_so_far = maxSum;
-                    rightIndex = j;
-                    maxSum += array[k];
-
-
-                } else { i = j + 1; }
-            }
-        }
-    }
-
-    let result = [];
-    for (let x = leftIndex; x <= rightIndex; x++) {
-        result.push(array[x]);
-
-    }
-
-    return "возраст-я послед-ть макс. длины: " + result.toString();
-};
-
-
-
-
 //! 2___________________________________________________
 
 
-//! TODO добавить обработку случаев с некорректной датой
-
-
-let DateDisplayFormatter = new Object();
-let monthCheck;
-let fromNow = false;
-let dateInput;
-let dateInputButton;
-
-const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-
-
-window.onload = function() {
-    function dateClick() {
-        dateInput.value = DateDisplayFormatter.showCurrentDate(dateInput.value);
-    }
-    monthCheck = document.getElementById('monthCheck');
-    fromNow = document.querySelector("#fromNow");
-    dateInput = document.querySelector(".date-input");
-    dateInputButton = document.querySelector(".subtask2__button");
-    dateInputButton.addEventListener("click", dateClick);
-
-};
-
-
-
-DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
-
-    let separator = " ";
-    separator = findSeparator(dateStr);
-
-    function findSeparator(datestr) {
-        if (datestr.includes('-')) {
-            separator = '-';
-        } else if (datestr.includes('/')) {
-            separator = '/';
-        } else if (datestr.includes('_')) {
-            separator = "_";
-        }
-        return separator;
-    }
-
-
-    let isvalid = true;
-    let ddmmyyyyFlag = false;
-    let mmddyyyyFlag = false;
-    let yyyyddmmFlag = false;
-    let yyyymmddFlag = false;
-    let day, month, year;
-    let inputMaskString = "";
-    let outputMaskString = "";
-    let date = dateStr;
-    let dateStrArr;
-
-
-    function findParams(dateStr) {
-
-        if (dateStr.includes(',')) {
-            dateStrArr = dateStr.split(',');
-            date = dateStrArr[0].trim();
-            inputMaskString = dateStrArr[1].trim();
-            if (dateStrArr.length > 2)
-                outputMaskString = dateStrArr[2];
-
-        }
-
-
-    }
-    findSeparator(outputMaskString);
-
-    findParams(dateStr);
-
-
-    // let ddmmyyyy = "ddmmyyyy";
-    // let mmddyyyy = "mmddyyyy";
-    // let yyyyddmm = "yyyyddmm";
-    // let yyyymmdd = "yyyymmdd";
-
-
-    date = date.replace(/\D/ig, ''); //  \D  all non-digit characters between 1 and unlimited times
-
-    //! после разбиения параметров инпута на массив переписать код ниже date[0].
-    function formatInput(inputMask) {
-        if (inputMask.toLowerCase() === "ddmmyyyy") {
-
-            day = date.slice(0, 2);
-            month = date.slice(2, 4);
-            year = date.slice(4, 8);
-            ddmmyyyyFlag = true;
-
-
-        } else if (inputMask.toLowerCase() === "mmddyyyy") {
-
-            month = date.slice(0, 2);
-            day = date.slice(2, 4);
-            year = date.slice(4, 8);
-            mmddyyyyFlag = true;
-
-        } else if (inputMask.toLowerCase() === "yyyyddmm") {
-            year = date.slice(0, 4);
-            day = date.slice(4, 6);
-            month = date.slice(6, 8);
-            yyyyddmmFlag = true;
-        } else if (inputMask.toLowerCase() === "yyyymmdd") {
-            year = date.slice(0, 4);
-            month = date.slice(4, 6);
-            day = date.slice(6, 8);
-            yyyymmddFlag = true;
-        } else if (inputMask.length < 2) {
-            day = date.slice(0, 2);
-            month = date.slice(2, 4);
-            year = date.slice(4, 8);
-        }
-    }
-
-    formatInput(inputMaskString);
-
-    function validateDate(date) {
-
-        isValid = true;
-
-
-        if ((parseInt(date)) === NaN) {
-            isValid = false;
-            alert("попробуйте снова");
-            dateInput.value = "";
-
-
-        } else if ((parseInt(day) > 31) || (parseInt(day) <= 0)) {
-            isValid = false;
-            alert("Неверно введён день, попробуйте снова");
-            dateInput.value = "";
-
-        } else if ((parseInt(month) > 12) || (parseInt(month) <= 0)) {
-            isValid = false;
-            alert("Неверно введён месяц, попробуйте снова");
-            dateInput.value = "";
-        } else if ((parseInt(year) > 2021) || (parseInt(year) <= 0)) {
-            isValid = false;
-            alert("неверно введён год, попробуйте снова");
-            dateInput.value = "";
-
-        }
-
-
-    }
-
-    validateDate(dateStr);
-
-    monthCheck.checked ? month = String(months[Number(month) - 1]) : month;
-    if (outputMaskString != "") {
-        outputMaskString = outputMaskString.replace(/[^\w]+/g, ''); //  \D  all non-digit characters between 1 and unlimited times
-
-    }
-    let resultStr = "";
-
-
-    function getDatefromNow(str) {
-        let now = new Date();
-        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        let date = new Date(Date.parse(year, month, day));
-        let diff = Math.floor((today - date) / 1000 / 3600 / 24 / 365) // floor в нижнюю сторону
-        diff.toString();
-        return str + " — полных лет прошло с этой даты: " + diff;
-    }
-    if (isvalid && inputMaskString.length > 2 && outputMaskString.length > 2) {
-
-        outputMaskString.toLowerCase() == "ddmmyyyy" ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
-            outputMaskString.toLowerCase() == "mmddyyyy" ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
-            outputMaskString.toLowerCase() == "yyyyddmm" ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
-            outputMaskString.toLowerCase() == "yyyymmdd" ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` :
-            "";
-    } else if (isvalid && inputMaskString.length > 2) {
-
-        ddmmyyyyFlag == true ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
-            mmddyyyyFlag == true ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
-            yyyyddmmFlag == true ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
-            yyyymmddFlag == true ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` : "";
-
-    } else if (separator != "") {
-        resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;
-
-    } else {
-        resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;
-
-    }
-    if (fromNow.checked) {
-        return getDatefromNow(resultStr);
-
-    } else return resultStr;
-
-
-}
 
 
 
@@ -413,35 +77,35 @@ let selectInput = "bin";
 
 
 
-window.onload = function() {
-
-    converterButton = document.getElementById("subTask3__button"); // btn elem
-    converterInput = document.getElementById("converterInput"); //input elem
 
 
-    selectInput = document.querySelector(".selectInput"); // input-select element
-    selectInput.addEventListener('change', (e) => {
-        selectInput = e.target.value;
-        return selectInput;
-    });
+converterButton = document.getElementById("subTask3__button"); // btn elem
+converterInput = document.getElementById("converterInput"); //input elem
 
 
-    selectOutput = document.querySelector(".selectOutput"); // output-select element
-    selectOutput.addEventListener('change', (e) => {
-        selectOutput = e.target.value;
-        return selectOutput;
-    });
+selectInput = document.querySelector(".selectInput"); // input-select element
+selectInput.addEventListener('change', (e) => {
+    selectInput = e.target.value;
+    return selectInput;
+});
 
 
-    converterInput.value = converterButton.addEventListener("click", converterInputClick);
+selectOutput = document.querySelector(".selectOutput"); // output-select element
+selectOutput.addEventListener('change', (e) => {
+    selectOutput = e.target.value;
+    return selectOutput;
+});
 
-    function converterInputClick() {
-        // inputVal = converterInput.value; //!inputVALUE
-        // inputVal.replace(/\D/g, "");
-        // inputArr = inputVal.trim().split('');
-        return BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
-    }
+
+converterInput.value = converterButton.addEventListener("click", converterInputClick);
+
+function converterInputClick() {
+    // inputVal = converterInput.value; //!inputVALUE
+    // inputVal.replace(/\D/g, "");
+    // inputArr = inputVal.trim().split('');
+    return BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
 }
+
 
 
 

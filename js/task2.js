@@ -23,17 +23,16 @@ const months = [
 ];
 
 
-window.onload = function() {
-    function dateClick() {
-        dateInput.value = DateDisplayFormatter.showCurrentDate(dateInput.value);
-    }
-    monthCheck = document.getElementById('monthCheck');
-    fromNow = document.querySelector("#fromNow");
-    dateInput = document.querySelector(".date-input");
-    dateInputButton = document.querySelector(".subtask2__button");
-    dateInputButton.addEventListener("click", dateClick);
+function dateClick() {
+    dateInput.value = DateDisplayFormatter.showCurrentDate(dateInput.value);
+}
+monthCheck = document.getElementById('monthCheck');
+fromNow = document.querySelector("#fromNow");
+dateInput = document.querySelector(".date-input");
+dateInputButton = document.querySelector(".subtask2__button");
+dateInputButton.addEventListener("click", dateClick);
 
-};
+
 
 
 
@@ -84,17 +83,17 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
     findParams(dateStr);
 
 
-    const ddmmyyyy = "ddmmyyyy";
-    const mmddyyyy = "mmddyyyy";
-    const yyyyddmm = "yyyyddmm";
-    const yyyymmdd = "yyyymmdd";
+    // let ddmmyyyy = "ddmmyyyy";
+    // let mmddyyyy = "mmddyyyy";
+    // let yyyyddmm = "yyyyddmm";
+    // let yyyymmdd = "yyyymmdd";
 
 
     date = date.replace(/\D/ig, ''); //  \D  all non-digit characters between 1 and unlimited times
 
     //! после разбиения параметров инпута на массив переписать код ниже date[0].
     function formatInput(inputMask) {
-        if (inputMask.toLowerCase() === ddmmyyyy) {
+        if (inputMask.toLowerCase() === "ddmmyyyy") {
 
             day = date.slice(0, 2);
             month = date.slice(2, 4);
@@ -102,19 +101,19 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
             ddmmyyyyFlag = true;
 
 
-        } else if (inputMask.toLowerCase() === mmddyyyy) {
+        } else if (inputMask.toLowerCase() === "mmddyyyy") {
 
             month = date.slice(0, 2);
             day = date.slice(2, 4);
             year = date.slice(4, 8);
             mmddyyyyFlag = true;
 
-        } else if (inputMask.toLowerCase() === yyyyddmm) {
+        } else if (inputMask.toLowerCase() === "yyyyddmm") {
             year = date.slice(0, 4);
             day = date.slice(4, 6);
             month = date.slice(6, 8);
             yyyyddmmFlag = true;
-        } else if (inputMask.toLowerCase() === yyyymmdd) {
+        } else if (inputMask.toLowerCase() === "yyyymmdd") {
             year = date.slice(0, 4);
             month = date.slice(4, 6);
             day = date.slice(6, 8);
