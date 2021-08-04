@@ -72,7 +72,7 @@ let inputVal;
 let converterButton;
 let inputArr;
 let selectOutput = "";
-let selectInput = "bin";
+let selectInput = "";
 
 
 
@@ -321,3 +321,52 @@ BinaryConverter.Convert = function Convert(src, from, to) {
     }
 
 }
+
+//bintodec
+//bintohex
+//?bin to oct
+
+
+//!ternaryToBin
+//!ternaryToOct
+
+//!___________________________
+//ternaryToDec
+//  function(num) {
+//     if (num.match(/[^012]/)) {
+//         return "not ternary";
+//     } else {
+//         return decFromConversion(num, 3);
+//     }
+// }
+// function decFromConversion(num, base) {
+//     var total = 0;
+//     for (var i = num.length; i > 0; i--) {
+//         var exp = num.length - i;
+//         var digit = specialParse(num[i - 1]);
+//         total += (digit * Math.pow(base, exp));
+//     }
+//     return total;
+// }
+//!___________________________
+
+
+//!ternaryToHex
+//
+
+//dectobin
+//?dec to ternary
+//?dec to oct
+//dectohex
+
+//hex to bin
+//?hex to ternary
+//hex to dec
+//?hex to oct
+
+//?oct to bin
+//?oct to ternary
+//?oct to dec
+//?oct to hex
+
+//
