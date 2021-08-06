@@ -81,17 +81,17 @@
                 <p class="subtask__description">Создать объект позволяющий производить конвертацию чисел из двоичной системы исчисления в десятеричную и обратно. Числа представлены в виде векторов (массивов чисел, где индекс является разрядом). Дополнительно: создать функции для перевода
                     из любой системы в любую.</p>
                 <select required class="selectInput">
-                    <option value="bin" >Двоичная</option>
-                    <!-- <option value="3"> Троичная</option>
-                    <option value="8">Восмеричная</option> -->
+                    <option value="bin">Двоичная</option>
+                    <option value="ter">Троичная</option>
+                    <option value="oct">Восмеричная</option>
                     <option value="dec">Десятичная</option>
                     <!-- <option value="12">Двенадцатеричная</option> -->
                     <option value="hex">Шестнадцатеричная</option>
                 </select>
                 <select required class="selectOutput">
-                    <option value="bin" >Двоичная</option>
-                    <!-- <option value="3"> Троичная</option>
-                    <option value="8">Восмеричная</option> -->
+                    <option value="bin">Двоичная</option>
+                    <option value="ter">Троичная</option>
+                    <option value="oct">Восмеричная</option>
                     <option value="dec">Десятичная</option>
                     <!-- <option value="12">Двенадцатеричная</option> -->
                     <option value="hex">Шестнадцатеричная</option>
@@ -104,23 +104,16 @@
             </div>
             <div class="subtask main__subtask" id="task7">
                 <h2 class="task__name task__name-last">Caching calculator</h2>
-                <p class="subtask__description">Написать функционал позволяющий производить операции над двумя
-                    числами и кэширование результата выполнения операции так, чтобы при
-                    повторном вызове функционала с теми же параметрами взялось
-                    закэшированное значение и не производилось перевычисление результата.
-                    Функционал обернуть в объект и сделать демонстрационную страницу для
-                    тестирования функционала.<br><br>
-                    Дополнительно: создать функционал регистрации кэшируемых функций,
-                    который позволит указывать кэшируемые функции и настройки кэша.
-                    Продемонстрировать подключение кэширования нескольких функций и
-                    использование кэшируемых результатов этих функций.</p>
-                    <div class="subtask7__checkbox-holder">               
-                        <input class="subtask7__checkbox" id="cache" type="checkbox">
-                        <label for="cache">Кэшировать результаты?</label>
-                    </div>
-                    <input type="text" class="converter-input subtask__input" id="converterInput" placeholder="Введите два числа (через пробел)">
-                    <div class="calculator__buttons">
-                        <button type="button" class="subtask__button calculator__btn">
+                <p class="subtask__description">Написать функционал позволяющий производить операции над двумя числами и кэширование результата выполнения операции так, чтобы при повторном вызове функционала с теми же параметрами взялось закэшированное значение и не производилось перевычисление
+                    результата. Функционал обернуть в объект и сделать демонстрационную страницу для тестирования функционала.<br><br> Дополнительно: создать функционал регистрации кэшируемых функций, который позволит указывать кэшируемые функции и настройки
+                    кэша. Продемонстрировать подключение кэширования нескольких функций и использование кэшируемых результатов этих функций.</p>
+                <div class="subtask7__checkbox-holder">
+                    <input class="subtask7__checkbox" id="cache" type="checkbox">
+                    <label for="cache">Кэшировать результаты?</label>
+                </div>
+                <input type="text" class="converter-input subtask__input" id="converterInput" placeholder="Введите два числа (через пробел)">
+                <div class="calculator__buttons">
+                    <button type="button" class="subtask__button calculator__btn">
                         +
                     </button>
                     <button type="button" class="subtask__button  calculator__btn">
@@ -132,12 +125,12 @@
                     <button type="button" class="subtask__button  calculator__btn">
                      /
                     </button>
-                    </div>
-                    <button type="button" class="subtask__button">
+                </div>
+                <button type="button" class="subtask__button">
                      click me
                     </button>
-                </div>
             </div>
+        </div>
         </div>
     </main>
     <script defer src="./js/task1.js"></script>

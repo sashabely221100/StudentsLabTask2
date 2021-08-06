@@ -1,82 +1,10 @@
-//! 1___________________________________________________
-
-
-
-
-
-
-
-
-//! 2___________________________________________________
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//! 6___________________________________________________
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let BinaryConverter = new Object();
 let converterInput;
-let inputVal;
+
 let converterButton;
-let inputArr;
+
 let selectOutput = "";
 let selectInput = "";
-
-
-
-
 
 
 converterButton = document.getElementById("subTask3__button"); // btn elem
@@ -97,276 +25,55 @@ selectOutput.addEventListener('change', (e) => {
 });
 
 
-converterInput.value = converterButton.addEventListener("click", converterInputClick);
+converterButton.addEventListener("click", converterInputClick);
 
 function converterInputClick() {
-    // inputVal = converterInput.value; //!inputVALUE
-    // inputVal.replace(/\D/g, "");
-    // inputArr = inputVal.trim().split('');
-    return BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
+
+
+    converterInput.value = BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
 }
-
-
-
-
-
-
-
-
-
-function binToDec(src) {
-
-    var i;
-    var n = 0;
-    var srcString = src.toString();
-    var returnNum = 0;
-
-    for (i = srcString.length - 1; i >= 0; i--) {
-        returnNum += srcString[i] * 2 ** n;
-        n++;
-    }
-
-    return returnNum;
-
-}
-
-function binToHex(src) {
-    var mapping = {
-        "0000": "0",
-        "0001": "1",
-        "0010": "2",
-        "0011": "3",
-        "0100": "4",
-        "0101": "5",
-        "0110": "6",
-        "0111": "7",
-        "1000": "8",
-        "1001": "9",
-        "1010": "A",
-        "1011": "B",
-        "1100": "C",
-        "1101": "D",
-        "1110": "E",
-        "1111": "F"
-    };
-
-    let srcString = src.toString();
-    let resultStr = "";
-    let remainder = ""; //ostatok
-
-
-    for (var i = srcString.length; i >= 4; i -= 4) {
-        if (i - 4 < srcString.length) {
-            resultStr += mapping[srcString.substr(i - 4, 4)];
-        }
-    }
-
-
-    if (i !== 0) {
-        remainder = srcString.substr(0, i);
-
-        while (remainder.length < 4) {
-            remainder += "0";
-        }
-
-        resultStr = mapping[remainder] + resultStr;
-    }
-
-    return resultStr;
-
-}
-
-function decToBin(src) {
-    var n = 0;
-    var resultStr = "";
-
-    while (2 ** (n) < src) {
-        n++;
-    }
-
-    for (n; n >= 0; n--) {
-        if (2 ** n <= src) {
-            resultStr += "1";
-            src = src % 2 ** n;
-        } else {
-            resultStr += resultStr === "" ? "" : "0";
-        }
-    }
-
-    return resultStr;
-
-}
-
-function decToHex(src) {
-
-    var mapping = {
-        "0": "0",
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
-        "10": "A",
-        "11": "B",
-        "12": "C",
-        "13": "D",
-        "14": "E",
-        "15": "F"
-    };
-
-    let k = 0;
-    var resultStr = "";
-
-    while (16 ** (k + 1) < src) {
-        k++;
-    }
-
-    for (k; k >= 0; k--) {
-        if (16 ** k <= src) {
-            resultStr += mapping[Math.floor(src / 16 ** k).toString()];
-            src = src - Math.floor(src / 16 ** k) * (16 ** k);
-        } else {
-            resultStr += "0";
-        }
-    }
-
-    return resultStr;
-}
-
-function hexToBin(src) {
-
-    var mapping = {
-        "0": "0000",
-        "1": "0001",
-        "2": "0010",
-        "3": "0011",
-        "4": "0100",
-        "5": "0101",
-        "6": "0110",
-        "7": "0111",
-        "8": "1000",
-        "9": "1001",
-        "A": "1010",
-        "B": "1011",
-        "C": "1100",
-        "D": "1101",
-        "E": "1110",
-        "F": "1111"
-    };
-
-    var srcString = src.toString();
-    var resultStr = "";
-
-    for (let l = 0; l < srcString.length; l++) {
-        resultStr += mapping[srcString[l]];
-    }
-
-    return resultStr;
-
-}
-
-function hexToDec(src) {
-
-    var mapping = {
-        "0": "0",
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
-        "A": "10",
-        "B": "11",
-        "C": "12",
-        "D": "13",
-        "E": "14",
-        "F": "15"
-    };
-
-    var srcString = src.toString();
-    var returnNum = 0;
-
-
-    for (let m = 0; m < srcString.length; m++) {
-        returnNum += mapping[srcString[m]] * (16 ** (srcString.length - 1 - m));
-    }
-
-    return returnNum;
-
-}
-
 
 BinaryConverter.Convert = function Convert(src, from, to) {
+    //2 3 8 10 16
 
-    switch (from) {
+    function getInputRadix(InpRad) {
+        return (InpRad === "bin") ? 2 : ((InpRad === "ter") ? 3 : (InpRad === "oct") ? 8 : (InpRad === "dec") ? 10 : (InpRad === "hex") ? 16 : alert("choose Input Radix"));
+    }
+    let InpRadix = getInputRadix(from);
 
-        case "bin":
-            converterInput.value = to === "dec" ? binToDec(src) : binToHex(src);
-            break;
+    function getOutputRadix(OutRad) {
+        return (OutRad === "bin") ? 2 : ((OutRad === "ter") ? 3 : (OutRad === "oct") ? 8 : (OutRad === "dec") ? 10 : (OutRad === "hex") ? 16 : alert("choose Input Radix"));
+    }
+    let OutRad = getOutputRadix(to);
 
-        case "dec":
-            converterInput.value = to === "bin" ? decToBin(src) : decToHex(src);
-            break;
-        case "hex":
-            converterInput.value = to === "dec" ? hexToDec(src) : hexToBin(src);
-            break;
 
+
+    function convertInputToDecimal(number, InputRadix) {
+
+        return parseInt(number, InputRadix); // converts input to base 10
     }
 
+
+    let convertedToDecimal = convertInputToDecimal(src, InpRadix); //after converted to decimal we can convert our input num to another base; 
+
+    function toBase(num, OutputRadix) { // only i64 numbers
+        var keys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+        if (!(OutputRadix >= 2 && OutputRadix <= keys.length)) throw new RangeError("toBase() radix argument must be between 2 and " + keys.length)
+
+        if (num < 0) var isNegative = true
+        if (isNaN(num = Math.abs(+num))) return NaN
+
+        let output = [];
+        do {
+            let index = num % OutputRadix;
+            output.unshift(keys[index]);
+            num = Math.trunc(num / OutputRadix);
+        } while (num != 0);
+        if (isNegative) output.unshift('-');
+        return output.join("");
+    }
+
+
+
+    return toBase(convertedToDecimal, OutRad);
 }
-
-//bintodec
-//bintohex
-//?bin to oct
-
-
-//!ternaryToBin
-//!ternaryToOct
-
-//!___________________________
-//ternaryToDec
-//  function(num) {
-//     if (num.match(/[^012]/)) {
-//         return "not ternary";
-//     } else {
-//         return decFromConversion(num, 3);
-//     }
-// }
-// function decFromConversion(num, base) {
-//     var total = 0;
-//     for (var i = num.length; i > 0; i--) {
-//         var exp = num.length - i;
-//         var digit = specialParse(num[i - 1]);
-//         total += (digit * Math.pow(base, exp));
-//     }
-//     return total;
-// }
-//!___________________________
-
-
-//!ternaryToHex
-//
-
-//dectobin
-//?dec to ternary
-//?dec to oct
-//dectohex
-
-//hex to bin
-//?hex to ternary
-//hex to dec
-//?hex to oct
-
-//?oct to bin
-//?oct to ternary
-//?oct to dec
-//?oct to hex
-
-//
