@@ -200,6 +200,12 @@ h6 {
     color: black;
     font-weight: 600;
     width: 20%;
+    cursor: pointer;
+}
+
+.subtask__button:hover {
+    background-color: #ffac8e;
+    box-shadow: black 1px -1px 1px;
 }
 
 .subtask__input {
@@ -223,4 +229,14 @@ h6 {
 .task__name-last::before {
     content: "*";
     color: red;
+}
+
+.calculator__buttons {
+    display: flex;
+    gap: 50px;
+}
+
+.calculator__btn {
+    width: 50px;
+    border-radius: 125px;
 }
