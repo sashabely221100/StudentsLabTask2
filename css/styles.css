@@ -42,10 +42,6 @@ input::-ms-clear {
     display: none;
 }
 
-button {
-    /* cursor: pointer; */
-}
-
 button::-moz-focus-inner {
     padding: 0;
     border: 0;
@@ -228,7 +224,7 @@ h6 {
 
 .task__name-last::before {
     content: "*";
-    color: red;
+    color: #813421;
 }
 
 .calculator__buttons {
@@ -239,4 +235,61 @@ h6 {
 .calculator__btn {
     width: 50px;
     border-radius: 125px;
+}
+
+.calculator {
+    margin-top: 30px;
+    box-sizing: border-box;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(100, auto) repeat(5, 100px);
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+}
+
+.calculator__button {
+    cursor: pointer;
+    outline: 3px solid #813421;
+    font-size: 1.75rem;
+    background-color: #168fc3;
+}
+
+.calculator__outputfield {
+    font-weight: 600;
+    grid-column: 1 / -1;
+    background-color: rgba(158, 158, 158, 0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.calculator__previous-value {
+    font-size: 1.5rem;
+}
+
+.calculator__current-value {
+    margin-top: 20px;
+    font-size: 2.5rem;
+}
+
+.calculator__button:hover {
+    cursor: pointer;
+    outline: 3px solid #92756e;
+    box-shadow: black 1px -1px 1px;
+    font-size: 1.75rem;
+}
+
+.del {
+    background: url("/backspace-solid.svg") no-repeat center;
+    background-color: #813421;
+    grid-column: 3/5;
+}
+
+.result {
+    background-color: #813421;
 }
