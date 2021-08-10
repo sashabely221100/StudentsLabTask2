@@ -11,7 +11,7 @@ class CachingCalculator {
         this.operation = undefined;
     }
     delete() {
-        this.currentOperand = this.currentOperand.toString().slice(0, -1)
+        this.currentOperand = this.currentOperand.toString().slice(0, -1);
     }
 
     appendNum(num) {
@@ -54,10 +54,10 @@ window.onload = function() {
         })
     });
 
-    deleteButton.addEventListener('click', button => {
-        calculator.delete()
-        calculator.updateDisplay()
-    })
+    deleteButton.addEventListener('click', () => {
+        calculator.delete();
+        calculator.update();
+    });
 
 
 
