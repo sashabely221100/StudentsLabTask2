@@ -78,7 +78,7 @@ class CachingCalculator {
             this.displayNumber(this.currentOperand);
         if (this.operation) {
             this.previousOperandTextElement.innerText =
-                `${this.displayNumber(previousOperand)} ${this.operation}`
+                `${this.displayNumber(previousOperand)}+ ${this.operation}`;
 
         }
     }
