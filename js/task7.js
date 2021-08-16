@@ -43,7 +43,7 @@ class CachingCalculator {
         let computation;
         const prevVal = parseFloat(this.previousOperand);
         const currentVal = parseFloat(this.currentOperand);
-        if (isNaN(prev) || isNaN(current)) return;
+        if (isNaN(prevVal) || isNaN(currentVal)) return;
         switch (this.operation) {
             case '+':
                 computation = prevVal + currentVal;
@@ -78,9 +78,9 @@ class CachingCalculator {
             this.displayNumber(this.currentOperand);
         if (this.operation) {
             this.previousOperandTextElement.innerText =
-                `${this.displayNumber(previousOperand)}+ ${this.operation}`;
+                `${this.displayNumber(this.previousOperand)} ${this.operation}`;
 
-        }
+        } else { this.previousOperandTextElement.innerText = '' }
     }
 }
 
@@ -118,7 +118,7 @@ calcButtons.forEach(btn => {
 allClearButton.addEventListener('click', btn => {
     calculator.clear();
     calculator.update();
-})
+});
 
 deleteButton.addEventListener('click', btn => {
     calculator.delete();
@@ -129,7 +129,7 @@ equalsButton.addEventListener('click', btn => {
     calculator.calculate();
     calculator.update();
 
-})
+});
 
 
 
