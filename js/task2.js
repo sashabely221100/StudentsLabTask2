@@ -57,33 +57,42 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
 
 
     let isvalid = true;
-    let ddmmyyyyFlag = false;
-    let mmddyyyyFlag = false;
-    let yyyyddmmFlag = false;
-    let yyyymmddFlag = false;
+    let none = document.getElementById("none");
+    let inputRadio1 = document.getElementById("ddmmyyyy");
+    let inputRadio2 = document.getElementById("mmddyyyy");
+    let inputRadio3 = document.getElementById("yyyyddmm");
+    let inputRadio4 = document.getElementById("yyyymmdd");
+
+    let none2 = document.getElementById("none2");
+    let outputRadio1Checked = document.getElementById("ddmmyyyy2").checked;
+    let outputRadio2Checked = document.getElementById("mmddyyyy2").checked;
+    let outputRadio3Checked = document.getElementById("yyyyddmm2").checked;
+    let outputRadio4Checked = document.getElementById("yyyymmdd2").checked;
+    // let ddmmyyyyFlag = false;
+    // let mmddyyyyFlag = false;
+    // let yyyyddmmFlag = false;
+    // let yyyymmddFlag = false;
     let day, month, year;
-    let inputMaskString = "";
-    let outputMaskString = "";
+    // let inputMaskString = "";
+    // let outputMaskString = "";
     let date = dateStr;
-    let dateStrArr;
+    //let dateStrArr;
 
 
-    function findParams(dateStr) {
+    // function findParams(dateStr) {
 
-        if (dateStr.includes(',')) {
-            dateStrArr = dateStr.split(',');
-            date = dateStrArr[0].trim();
-            inputMaskString = dateStrArr[1].trim();
-            if (dateStrArr.length > 2)
-                outputMaskString = dateStrArr[2];
+    //     if (dateStr.includes(',')) {
+    //         dateStrArr = dateStr.split(',');
+    //         date = dateStrArr[0].trim();
+    //         inputMaskString = dateStrArr[1].trim();
+    //         if (dateStrArr.length > 2)
+    //             outputMaskString = dateStrArr[2];
+    //     }
+    // }
 
-        }
+    //findSeparator(outputMaskString);
 
-
-    }
-    findSeparator(outputMaskString);
-
-    findParams(dateStr);
+    //findParams(dateStr);
     date = date.replace(/\D/ig, ''); //  \D  all non-digit characters between 1 and unlimited times
 
     // let ddmmyyyy = "ddmmyyyy";
@@ -95,40 +104,40 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
 
 
     //! после разбиения параметров инпута на массив переписать код ниже date[0].
-    function formatInput(inputMask) {
-        if (inputMask.toLowerCase() === "ddmmyyyy") {
+    function formatInput(date) {
+        if (inputRadio1.checked) {
 
             day = date.slice(0, 2);
             month = date.slice(2, 4);
             year = date.slice(4, 8);
-            ddmmyyyyFlag = true;
+            //  ddmmyyyyFlag = true;
 
 
-        } else if (inputMask.toLowerCase() === "mmddyyyy") {
+        } else if (inputRadio2.checked) {
 
             month = date.slice(0, 2);
             day = date.slice(2, 4);
             year = date.slice(4, 8);
-            mmddyyyyFlag = true;
+            //  mmddyyyyFlag = true;
 
-        } else if (inputMask.toLowerCase() === "yyyyddmm") {
+        } else if (inputRadio3.checked) {
             year = date.slice(0, 4);
             day = date.slice(4, 6);
             month = date.slice(6, 8);
-            yyyyddmmFlag = true;
-        } else if (inputMask.toLowerCase() === "yyyymmdd") {
+            //   yyyyddmmFlag = true;
+        } else if (inputRadio4.checked) {
             year = date.slice(0, 4);
             month = date.slice(4, 6);
             day = date.slice(6, 8);
-            yyyymmddFlag = true;
-        } else if (inputMask.length < 2) {
+            //  yyyymmddFlag = true;
+        } else {
             day = date.slice(0, 2);
             month = date.slice(2, 4);
             year = date.slice(4, 8);
         }
     }
 
-    formatInput(inputMaskString);
+    formatInput(date);
 
     function validateDate(date) {
 
@@ -163,10 +172,10 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
     validateDate(dateStr);
 
     monthCheck.checked ? month = String(months[Number(month) - 1]) : month;
-    if (outputMaskString != "") {
-        outputMaskString = outputMaskString.replace(/[^\w]+/g, ''); //  \D  all non-digit characters between 1 and unlimited times
+    // if (outputMaskString != "") {
+    //     outputMaskString = outputMaskString.replace(/[^\w]+/g, ''); //  \D  all non-digit characters between 1 and unlimited times
 
-    }
+    // }
     let resultStr = "";
 
 
@@ -178,31 +187,29 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
         diff.toString();
         return str + " — полных лет прошло с этой даты: " + diff;
     }
-    if (isvalid && inputMaskString.length > 2 && outputMaskString.length > 2) {
+    // if (isvalid) {
 
-        outputMaskString.toLowerCase() == "ddmmyyyy" ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
-            outputMaskString.toLowerCase() == "mmddyyyy" ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
-            outputMaskString.toLowerCase() == "yyyyddmm" ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
-            outputMaskString.toLowerCase() == "yyyymmdd" ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` :
-            "";
-    } else if (isvalid && inputMaskString.length > 2) {
+    //     outputMaskString.toLowerCase() == "ddmmyyyy" ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
+    //         outputMaskString.toLowerCase() == "mmddyyyy" ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
+    //         outputMaskString.toLowerCase() == "yyyyddmm" ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
+    //         outputMaskString.toLowerCase() == "yyyymmdd" ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` :
+    //         "";
+    if (isvalid) {
 
-        ddmmyyyyFlag == true ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
-            mmddyyyyFlag == true ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
-            yyyyddmmFlag == true ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
-            yyyymmddFlag == true ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` : "";
+        outputRadio1Checked ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
+            outputRadio2Checked == true ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
+            outputRadio3Checked == true ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
+            outputRadio4Checked == true ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` : "";
 
-    } else if (separator != "") {
-        resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;
-
-    } else {
-        resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;
+    } else
+    if (none2.checked) {
+        resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`
 
     }
     if (fromNow.checked) {
         return getDatefromNow(resultStr);
 
-    } else return resultStr;
-
-
+    } else {
+        return resultStr;
+    }
 }
