@@ -1,0 +1,298 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-y: visible;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+/* !RESET */
+
+.page {
+    font-family: sans-serif;
+    outline-color: RED;
+}
+
+.page__body {
+    width: 1170px;
+    margin: 0 auto;
+    background-color: #b0e0e6;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+}
+
+.header {
+    margin-top: 30px;
+    padding: 30px 40px;
+    background-color: #2D728F;
+}
+
+
+/* !добавить h50px и transition при hover на элемах nav */
+
+.nav__list {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.nav__item {
+    width: 22%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #FFC9B5;
+    border: 2px solid black;
+    border-radius: 3px;
+    flex-direction: row;
+    justify-content: center;
+    cursor: pointer;
+    .nav__item-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: black;
+        font-weight: 600;
+    }
+}
+
+.main {}
+
+.main__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    gap: 50px;
+    margin-top: 50px;
+    .main__subtask {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        padding: 30px;
+        row-gap: 18px;
+        background-color: #2D728f;
+        border-bottom: 5px solid #2D728f;
+        border-radius: 20px;
+        box-shadow: 0px -5px 5px -5px rgba(18, 45, 56, 0.9);
+        .task__name {
+            font-size: 3em;
+            text-transform: uppercase;
+        }
+        .subtask__form {
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+            width: 100%;
+            row-gap: 10px;
+            .subtask__form-desc {
+                color: #FFC9B5;
+                font-weight: 700;
+            }
+        }
+    }
+    .subtask__checkbox-holder {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+    }
+    .subtask2__checkbox-holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 35px;
+        background-color: #fff;
+        width: 50%;
+        height: 25px;
+        border-radius: 25px;
+    }
+    .checkbox__wrapper {
+        width: 50%;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #FFC9B5;
+        border-radius: 25px;
+    }
+    .subtask__name {
+        font-size: 1.75em;
+    }
+    .subtask__button {
+        height: 50px;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: #FFC9B5;
+        color: black;
+        font-weight: 600;
+        width: 20%;
+        cursor: pointer;
+        &.subtask__button:hover {
+            background-color: #ffac8e;
+            box-shadow: black 1px -1px 1px;
+        }
+    }
+    .subtask__input {
+        width: 66%;
+        height: 5vh;
+        border-radius: 15px;
+        font-size: 1.4em;
+        padding: 0 2em;
+        text-align: center;
+    }
+    .subtask2__list:nth-of-type(n) {
+        font-size: 17px;
+        font-weight: 700;
+    }
+    .subtask__description {
+        font-size: 1.5em;
+    }
+    .task__name-last::before {
+        content: "*";
+        color: #813421;
+    }
+    .calculator {
+        margin-top: 30px;
+        box-sizing: border-box;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: minmax(100, auto) repeat(5, 100px);
+        grid-column-gap: 10px;
+        grid-row-gap: 15px;
+        -webkit-touch-callout: none;
+        /* iOS Safari */
+        -webkit-user-select: none;
+        /* Chrome/Safari/Opera */
+        -khtml-user-select: none;
+        /* Konqueror */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently
+                                  not supported by any browser */
+        .calculator__btn {
+            width: 50px;
+            border-radius: 125px;
+        }
+        .calculator__button {
+            cursor: pointer;
+            outline: 3px solid #813421;
+            font-size: 1.75rem;
+            background-color: #168fc3;
+            &.calculator__button:hover {
+                cursor: pointer;
+                outline: 3px solid #92756e;
+                box-shadow: black 1px -1px 1px;
+                font-size: 1.75rem;
+            }
+        }
+        .calculator__outputfield {
+            min-height: 100px;
+            font-weight: 600;
+            grid-column: 1 / -1;
+            background-color: white;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            flex-direction: column;
+            word-wrap: break-word;
+            word-break: break-all;
+            .calculator__previous-value {
+                color: #b4553d;
+                font-size: 2rem;
+            }
+            .calculator__current-value {
+                margin-top: 20px;
+                font-size: 3rem;
+            }
+        }
+        .del {
+            background: url("/backspace-solid.svg") no-repeat center;
+            background-color: #813421;
+            grid-column: 3/5;
+        }
+        .result {
+            background-color: #813421;
+        }
+    }
+}
