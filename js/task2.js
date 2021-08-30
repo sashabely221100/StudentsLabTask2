@@ -6,6 +6,7 @@ let monthCheck;
 let fromNow = false;
 let dateInput;
 let dateInputButton;
+let output2;
 
 const months = [
     'January',
@@ -22,15 +23,17 @@ const months = [
     'December',
 ];
 
-
-function dateClick() {
-    dateInput.value = DateDisplayFormatter.showCurrentDate(dateInput.value);
-}
 monthCheck = document.getElementById('monthCheck');
 fromNow = document.querySelector("#fromNow");
 dateInput = document.querySelector(".date-input");
 dateInputButton = document.querySelector(".subtask2__button");
 dateInputButton.addEventListener("click", dateClick);
+output2 = document.querySelector(".task2-result");
+
+function dateClick() {
+    output2.value = DateDisplayFormatter.showCurrentDate(dateInput.value);
+}
+
 
 
 
@@ -81,7 +84,7 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
     findSeparator(outputMaskString);
 
     findParams(dateStr);
-
+    date = date.replace(/\D/ig, ''); //  \D  all non-digit characters between 1 and unlimited times
 
     // let ddmmyyyy = "ddmmyyyy";
     // let mmddyyyy = "mmddyyyy";
@@ -89,7 +92,7 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
     // let yyyymmdd = "yyyymmdd";
 
 
-    date = date.replace(/\D/ig, ''); //  \D  all non-digit characters between 1 and unlimited times
+
 
     //! после разбиения параметров инпута на массив переписать код ниже date[0].
     function formatInput(inputMask) {
@@ -179,15 +182,15 @@ DateDisplayFormatter.showCurrentDate = function showCurrentDate(dateStr) {
 
         outputMaskString.toLowerCase() == "ddmmyyyy" ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
             outputMaskString.toLowerCase() == "mmddyyyy" ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
-                outputMaskString.toLowerCase() == "yyyyddmm" ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
-                    outputMaskString.toLowerCase() == "yyyymmdd" ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` :
-                        "";
+            outputMaskString.toLowerCase() == "yyyyddmm" ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
+            outputMaskString.toLowerCase() == "yyyymmdd" ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` :
+            "";
     } else if (isvalid && inputMaskString.length > 2) {
 
         ddmmyyyyFlag == true ? resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}` :
             mmddyyyyFlag == true ? resultStr = `${month}` + `${separator}` + `${day}` + `${separator}` + `${year}` :
-                yyyyddmmFlag == true ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
-                    yyyymmddFlag == true ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` : "";
+            yyyyddmmFlag == true ? resultStr = `${year}` + `${separator}` + `${day}` + `${separator}` + `${month}` :
+            yyyymmddFlag == true ? resultStr = `${year}` + `${separator}` + `${month}` + `${separator}` + `${day}` : "";
 
     } else if (separator != "") {
         resultStr = `${day}` + `${separator}` + `${month}` + `${separator}` + `${year}`;

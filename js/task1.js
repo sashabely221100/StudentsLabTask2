@@ -1,32 +1,35 @@
 let ArrayProcessingTool = new Object();
-let subSum;
-let search;
-let selection;
-let input;
-let inputButton;
+// let subSum;
+// let search;
+// let selection;
+// let input, output;
+// let inputButton;
 
+
+let subSum = document.getElementById('check1');
+let search = document.getElementById('check2');
+let selection = document.getElementById('check3');
+let input = document.querySelector(".subtask__input");
+let output = document.querySelector(".task1-result");
+// console.log(input);
+let inputButton = document.querySelector(".subtask1__button");
+//console.log(inputButton);
 
 function btnClick() {
     //input.value = stringToArray(input.value);
     if (subSum.checked) {
-        input.value = ArrayProcessingTool.getMaxSubSumOn(stringToArray(input.value));
+        output.value = ArrayProcessingTool.getMaxSubSumOn(stringToArray(input.value)); //result(output)  value
     } else if (search.checked) {
-        input.value = ArrayProcessingTool.Search(stringToArray(input.value));
+        output.value = ArrayProcessingTool.Search(stringToArray(input.value)); //result(output)  value
     } else if (selection.checked) {
-        input.value = ArrayProcessingTool.subSumSelection(stringToArray(input.value));
+        output.value = ArrayProcessingTool.subSumSelection(stringToArray(input.value)); //result(output) value
     }
 
     console.log(input);
     console.log(inputButton);
 }
 
-subSum = document.getElementById('check1');
-search = document.getElementById('check2');
-selection = document.getElementById('check3');
-input = document.querySelector(".subtask__input");
-console.log(input);
-inputButton = document.querySelector(".subtask1__button");
-console.log(inputButton);
+
 
 
 inputButton.addEventListener("click", btnClick);

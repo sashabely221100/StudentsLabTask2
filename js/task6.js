@@ -6,9 +6,11 @@ let converterButton;
 let selectOutput;
 let selectInput;
 
+let output3 = document.querySelector(".task3-result")
 
-converterButton = document.getElementById("subTask3__button"); // btn elem
-converterInput = document.getElementById("converterInput"); //input elem
+
+converterButton = document.getElementById("subTask3__button"); // submit button element
+converterInput = document.getElementById("converterInput"); //input field element
 
 
 selectInput = document.querySelector(".selectInput"); // input-select element
@@ -30,7 +32,7 @@ converterButton.addEventListener("click", converterInputClick);
 function converterInputClick() {
 
 
-    converterInput.value = BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
+    output3.value = BinaryConverter.Convert(converterInput.value, selectInput, selectOutput);
 }
 
 BinaryConverter.Convert = function Convert(src, from, to) {

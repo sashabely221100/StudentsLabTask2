@@ -176,7 +176,24 @@ h6 {
 
 .subtask2__checkbox-holder {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 35px;
+    background-color: #fff;
+    width: 50%;
+    height: 25px;
+    border-radius: 25px;
+}
+
+.checkbox__wrapper {
+    width: 50%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFC9B5;
+    border-radius: 25px;
 }
 
 .subtask__form-desc {
